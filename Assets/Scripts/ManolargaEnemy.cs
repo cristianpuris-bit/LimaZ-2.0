@@ -8,7 +8,7 @@ public class ManolargaEnemy : MonoBehaviour
     {
         None,
         Meele,
-        Range
+        Range,
     }
     public enum EnemyState
     {
