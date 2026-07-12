@@ -9,11 +9,14 @@ public class Player : MonoBehaviour
     public float VidaMaxima;
     public Armas currentWeapon;
     public bool estaMuerto = false;
+    public bool HasGanado = false;
     public Vector2 direccionMirando = Vector2.down;
 
     public Animator anim;
     public bool moving;
     public PantallaMuerte pantallaMuerte;
+    
+    public Temporizador temporizador;
 
 
 
@@ -28,7 +31,8 @@ public class Player : MonoBehaviour
     {
         MovementPlayer();
         Morir();
-   
+        
+
 
 
 
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         if (estaMuerto) return;
+        if (HasGanado) return;
 
         Vector3 dir = new Vector3(x, y, 0);
         dir.Normalize();
@@ -71,25 +76,25 @@ public class Player : MonoBehaviour
         }
 
         anim.SetBool("Moving", moving);
-       
+
         if (currentWeapon.Hand == Armas.TiposDeArma.Melee)
         {
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Vector3 posicionMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float direccionX = (posicionMouse.x > transform.position.x) ? 1f : -1f;
 
                 Debug.Log("Direccion X calculada: " + direccionX);
 
-                anim.SetFloat("X", direccionX); // asegura que el Blend Tree tenga el valor correcto
+                anim.SetFloat("X", direccionX); 
                 anim.SetTrigger("Atacar");
             }
         }
     }
 
     public void Morir()
-    {    
-        Debug.Log ("Player Health: " + Health);
+    {
+        Debug.Log("Player Health: " + Health);
         if (Health <= 0 && !estaMuerto)
         {
             estaMuerto = true;
@@ -104,6 +109,20 @@ public class Player : MonoBehaviour
     void MostrarPantallaConDelay()
     {
         pantallaMuerte.MostrarPantallaMuerte();
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
     }
+
+    /*public void ganar()
+    {
+        if (temporizador.tiempoTranscurrido >= temporizador.TiempoLimite)
+        {
+            HasGanado = true;
+            if (HasGanado)
+            {
+                anim.SetTrigger("Ganar");
+                Debug.Log("has ganado felicidades");
+            }
+        }
+    }*/
+    
 }

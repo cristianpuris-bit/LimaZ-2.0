@@ -27,7 +27,7 @@ public class Temporizador : MonoBehaviour
             tiempoTranscurrido = TiempoLimite;
             Aumentando = false;
             Debug.Log("Has ganado");
-            MostrarVictoria();
+            Invoke(nameof(MostrarVictoria), 1.3f);
         }
 
         ActualizarTexto();
@@ -43,6 +43,6 @@ public class Temporizador : MonoBehaviour
     {
         Debug.Log("¡Sobreviviste 5 minutos! Victoria");
         panelVictoria.SetActive(true);
-        Time.timeScale = 0f; // opcional: pausa el juego al ganar
+        Time.timeScale = 0f; 
     }
 }
