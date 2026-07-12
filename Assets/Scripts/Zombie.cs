@@ -17,7 +17,7 @@ public class Zombie : MonoBehaviour
     public float radiusattack = 1f;
     public float radiusMovement = 5f;
     public float Health = 100f;
-    public BarradeVida BarraVida;
+  
     public bool IsAbleToAttack = true;
     public float MaxTime = 2f;
     public float damage = 5f;
@@ -70,7 +70,7 @@ public class Zombie : MonoBehaviour
                         Debug.Log("ven maldito");
                         target.GetComponent<Player>().Health -= damage;
                         IsAbleToAttack = false;
-                        //BarraVida.CambiarVida(target.GetComponent<Player>().Health, target.GetComponent<Player>().VidaMaxima);
+                        
                     }
                     ResetTime += Time.deltaTime;
                     if (ResetTime >= MaxTime)
