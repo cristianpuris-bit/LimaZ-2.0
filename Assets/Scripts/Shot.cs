@@ -24,7 +24,7 @@ public class Shot : MonoBehaviour
 
             if (enemigo != null)
             {
-                enemigo.TakeDamage(25);
+                enemigo.TakeDamage(40);
                 Destroy(gameObject);
             }
         }

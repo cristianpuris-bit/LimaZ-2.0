@@ -198,9 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472a7eaf6ece797439a9ac44edac553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManolargaEnemy
-  attackType: 0
   state: 1
-  Speed: 5
+  Speed: 2.5
   radiusattack: 1
   radiusMovement: 2.5
   RadiusFlee: 5
@@ -214,6 +213,8 @@ MonoBehaviour:
   SpecialabilityReset: 0
   MaxAbilityTime: 4
   SpecialAbilityDamage: 20
+  "tiempoUltimoDa\xF1o": 0
+  "intervaloDa\xF1o": 1
 --- !u!61 &1422544218245269589
 BoxCollider2D:
   m_ObjectHideFlags: 0

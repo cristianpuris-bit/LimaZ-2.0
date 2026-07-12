@@ -18,6 +18,7 @@ public class Armas : MonoBehaviour
     public float RadioAtaque;
     public LayerMask Enemy;
     public int Daño = 100;
+    
     void Start()
     {
         
@@ -54,20 +55,37 @@ public class Armas : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
+                        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                        if (sr != null)
+                        {
+                            sr.enabled = false;
+                        }
                         Collider2D[] colisiones = Physics2D.OverlapCircleAll(Puntoataque.position, RadioAtaque);
                         foreach (Collider2D colision in colisiones)
                         {
                             if (colision.gameObject.tag == "Enemy")
                             {
-                                colision.GetComponent<Zombie>().TakeDamage(5f);
+                                Zombie zombie = colision.GetComponent<Zombie>();
+                                if (zombie != null)
+                                {
+                                    zombie.TakeDamage(100f);
+                                }
                             }
                             if (colision.gameObject.tag == "Enemy2")
                             {
-                                colision.GetComponent<EnemyAmalgama>().TakeDamage(10f);
+                                EnemyAmalgama amalgama = colision.GetComponent<EnemyAmalgama>();
+                                if (amalgama != null)
+                                {
+                                    amalgama.TakeDamage(100f);
+                                }
                             }
                             if (colision.gameObject.tag == "Enemy3")
                             {
-                                colision.GetComponent<ManolargaEnemy>().TakeDamage(5f);
+                                ManolargaEnemy manolarga = colision.GetComponent<ManolargaEnemy>();
+                                if (manolarga != null)
+                                {
+                                    manolarga.TakeDamage(100f);
+                                }
                             }
                         }
                     }
@@ -84,6 +102,11 @@ public class Armas : MonoBehaviour
                 break;
             case TiposDeArma.OneHand:
                 {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.enabled = true;
+                    }
                     Cooldown = 1f;
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -108,6 +131,11 @@ public class Armas : MonoBehaviour
                 break;
             case TiposDeArma.TwoHand:
                 {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.enabled = true;
+                    }
                     Cooldown = 0.2f;
                     if (Input.GetMouseButton(0))
                     {

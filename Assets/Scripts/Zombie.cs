@@ -12,7 +12,7 @@ public class Zombie : MonoBehaviour
 
     }
     public EnemyState State;
-    public float Speed = 5f;
+    public float Speed = 2.5f;
     public GameObject target;
     public float radiusattack = 1f;
     public float radiusMovement = 5f;
@@ -22,7 +22,9 @@ public class Zombie : MonoBehaviour
     public float MaxTime = 2f;
     public float damage = 5f;
     public float ResetTime = 0f;
-    
+    public float tiempoUltimoDaño = 0f;
+    public float intervaloDaño = 1f;
+
     void Start()
     {
         target = GameObject.FindWithTag("Player");
@@ -96,6 +98,17 @@ public class Zombie : MonoBehaviour
         if (Health <= 0)
         {  
             Destroy(gameObject);
+        }
+    }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Time.time - tiempoUltimoDaño < intervaloDaño) return;
+
+        Barricada barricada = collision.gameObject.GetComponent<Barricada>();
+        if (barricada != null)
+        {
+            barricada.RecibirDaño(damage);
+            tiempoUltimoDaño = Time.time;
         }
     }
 }

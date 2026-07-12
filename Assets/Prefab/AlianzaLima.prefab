@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   State: 0
-  Speed: 5
+  Speed: 2.5
   target: {fileID: 0}
   radiusattack: 1
   radiusMovement: 5
@@ -209,6 +209,8 @@ MonoBehaviour:
   MaxTime: 2
   damage: 5
   ResetTime: 0
+  "tiempoUltimoDa\xF1o": 0
+  "intervaloDa\xF1o": 1
 --- !u!50 &2980291069561728237
 Rigidbody2D:
   serializedVersion: 5

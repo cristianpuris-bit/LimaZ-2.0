@@ -12,7 +12,7 @@ public class EnemyAmalgama : MonoBehaviour
 
     }
     public EnemyState State;
-    public float Speed = 2.5f;
+    public float Speed = 1f;
     public GameObject target;
     public float radiusattack = 1f;
     public float radiusMovement = 5f;
@@ -22,6 +22,8 @@ public class EnemyAmalgama : MonoBehaviour
     public float MaxTime = 2f;
     public float damage = 10f;
     public float ResetTime = 0f;
+    public float tiempoUltimoDaño = 0f;
+    public float intervaloDaño = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -98,6 +100,16 @@ public class EnemyAmalgama : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Time.time - tiempoUltimoDaño < intervaloDaño) return;
 
+        Barricada barricada = collision.gameObject.GetComponent<Barricada>();
+        if (barricada != null)
+        {
+            barricada.RecibirDaño(damage);
+            tiempoUltimoDaño = Time.time;
+        }
+    }
 }
 

@@ -41,6 +41,10 @@ public class SpawnRate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+        {
+            return;
+        }
         
         Vector3 targetPos = target.transform.position;
         float distancia = Vector3.Distance(targetPos, transform.position);

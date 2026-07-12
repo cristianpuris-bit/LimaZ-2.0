@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class ManolargaEnemy : MonoBehaviour
 {
-    public enum EnemyAttackType
-    {
-        None,
-        Meele,
-        Range,
-    }
+    
     public enum EnemyState
     {
         None,
@@ -19,10 +14,10 @@ public class ManolargaEnemy : MonoBehaviour
         Attack,
         
     }
-    public EnemyAttackType attackType;
+    
     public EnemyState state;
     
-    public float Speed = 5f;
+    public float Speed = 2.5f;
     GameObject target;
     public float radiusattack = 1f;
     public float radiusMovement = 2.5f;
@@ -40,6 +35,8 @@ public class ManolargaEnemy : MonoBehaviour
     public float SpecialabilityReset = 0f;
     public float MaxAbilityTime = 4f;
     public float SpecialAbilityDamage = 20f;
+    public float tiempoUltimoDaño = 0f;
+    public float intervaloDaño = 1f;
 
     void Start()
     {
@@ -49,8 +46,8 @@ public class ManolargaEnemy : MonoBehaviour
 
     void Update()
     {
-       
-       EnemyStateChanger();
+        
+        EnemyStateChanger();
 
     }
 
@@ -194,34 +191,6 @@ public class ManolargaEnemy : MonoBehaviour
         }
     }
 
-    public void CheckMainState()
-    {
-        switch (attackType)
-        {
-            case EnemyAttackType.None:
-                break;
-            case EnemyAttackType.Meele:
-
-
-                MeeleType();
-
-                break;
-            case EnemyAttackType.Range:
-
-                RangeType();
-                break;
-        }
-    }
-
-    public void MeeleType()
-    {
-
-    }
-    public void RangeType()
-    {
-
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -230,5 +199,16 @@ public class ManolargaEnemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radiusMovement);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, RadiusFlee);
+    }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Time.time - tiempoUltimoDaño < intervaloDaño) return;
+
+        Barricada barricada = collision.gameObject.GetComponent<Barricada>();
+        if (barricada != null)
+        {
+            barricada.RecibirDaño(damage);
+            tiempoUltimoDaño = Time.time;
+        }
     }
 }

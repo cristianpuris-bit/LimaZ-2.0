@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAmalgama
   State: 0
-  Speed: 2.5
+  Speed: 1
   target: {fileID: 0}
   radiusattack: 1
   radiusMovement: 5
@@ -117,6 +117,8 @@ MonoBehaviour:
   MaxTime: 2
   damage: 10
   ResetTime: 0
+  "tiempoUltimoDa\xF1o": 0
+  "intervaloDa\xF1o": 1
 --- !u!50 &2030196039390529207
 Rigidbody2D:
   serializedVersion: 5

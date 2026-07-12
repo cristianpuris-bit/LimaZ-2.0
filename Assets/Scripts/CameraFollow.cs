@@ -9,6 +9,8 @@ public class CameraFollow : MonoBehaviour
     public float LimiteSuperior;
     public float LimiteIzquierdo;
     public float LimiteDerecho;
+    public float Suavizado = 0.15f; 
+    private Vector3 velocidadCamara = Vector3.zero;
 
     void Start()
     {
@@ -27,11 +29,10 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
-        Vector3 direction = (target.transform.position - transform.position);  
-        direction.z = 0;
-        direction.Normalize();
-        if (Vector3.Distance (target.transform.position, transform.position) > 1 )
-              transform.position += direction * CameraSpeed * Time.deltaTime;
+        Vector3 destino = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
+
+        transform.position = Vector3.SmoothDamp(transform.position, destino, ref velocidadCamara, Suavizado);
+
         if   (transform.position.y < LimiteInferior)
         {
             transform.position = new Vector3 (transform.position.x, LimiteInferior, transform.position.z);

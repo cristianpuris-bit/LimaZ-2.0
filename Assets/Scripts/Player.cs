@@ -1,6 +1,3 @@
-
-
-
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,10 +8,12 @@ public class Player : MonoBehaviour
     public float Health;
     public float VidaMaxima;
     public Armas currentWeapon;
-
+    public bool estaMuerto = false;
+    public Vector2 direccionMirando = Vector2.down;
 
     public Animator anim;
     public bool moving;
+    public PantallaMuerte pantallaMuerte;
 
 
 
@@ -43,9 +42,14 @@ public class Player : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
+        if (estaMuerto) return;
 
         Vector3 dir = new Vector3(x, y, 0);
         dir.Normalize();
+        if (dir.magnitude > 0.1f)
+        {
+            direccionMirando = new Vector2(x, y).normalized;
+        }
         float i = transform.position.y;
         float e = transform.position.x;
 
@@ -72,7 +76,12 @@ public class Player : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                
+                Vector3 posicionMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                float direccionX = (posicionMouse.x > transform.position.x) ? 1f : -1f;
+
+                Debug.Log("Direccion X calculada: " + direccionX);
+
+                anim.SetFloat("X", direccionX); // asegura que el Blend Tree tenga el valor correcto
                 anim.SetTrigger("Atacar");
             }
         }
@@ -80,12 +89,21 @@ public class Player : MonoBehaviour
 
     public void Morir()
     {    
-        if (Health <= 0)
+        Debug.Log ("Player Health: " + Health);
+        if (Health <= 0 && !estaMuerto)
         {
-            anim.SetBool("Morir",true);
+            estaMuerto = true;
+            anim.SetTrigger("Morir");
             Debug.Log("Player is dead");
-            Destroy(gameObject, 1.1f);
+
+
+            Invoke(nameof(MostrarPantallaConDelay), 1.5f);
+
         }
     }
-    
+    void MostrarPantallaConDelay()
+    {
+        pantallaMuerte.MostrarPantallaMuerte();
+        Time.timeScale = 0f; // pausar el juego
+    }
 }
