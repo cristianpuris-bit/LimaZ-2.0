@@ -97,13 +97,13 @@ public class Player : MonoBehaviour
             Debug.Log("Player is dead");
 
 
-            Invoke(nameof(MostrarPantallaConDelay), 1.5f);
+            Invoke(nameof(MostrarPantallaConDelay), 1.3f);
 
         }
     }
     void MostrarPantallaConDelay()
     {
         pantallaMuerte.MostrarPantallaMuerte();
-        Time.timeScale = 0f; // pausar el juego
+        Time.timeScale = 0f; 
     }
 }
