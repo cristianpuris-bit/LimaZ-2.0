@@ -1,36 +1,38 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PantallaMuerte : MonoBehaviour
+
+public class PantallaVictoria : MonoBehaviour
 {
-    public GameObject panelMuerte; 
+    public GameObject panelVictoria;
     public string nombreEscenaMenu = "Menu";
+
     void Start()
     {
         
     }
 
-    
+    // Update is called once per frame
     void Update()
     {
         
     }
-    public void MostrarPantallaMuerte()
+    public void MostrarPantallaVictoria()
     {
-        panelMuerte.SetActive(true);
-        Time.timeScale = 0f; 
+        panelVictoria.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Reintentar()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         Scene escenaActual = SceneManager.GetActiveScene();
         SceneManager.LoadScene(escenaActual.name);
     }
 
     public void IrAlMenu()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(nombreEscenaMenu);
     }
 }

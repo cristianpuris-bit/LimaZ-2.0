@@ -7,6 +7,7 @@ public class Temporizador : MonoBehaviour
     public float TiempoLimite = 300f;
     public float tiempoTranscurrido = 0f;
     public bool Aumentando = true;
+    public GameObject panelVictoria;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class Temporizador : MonoBehaviour
             tiempoTranscurrido = TiempoLimite;
             Aumentando = false;
             Debug.Log("Has ganado");
+            MostrarVictoria();
         }
 
         ActualizarTexto();
@@ -37,5 +39,10 @@ public class Temporizador : MonoBehaviour
         int segundos = Mathf.FloorToInt(tiempoTranscurrido % 60f);
         textoTiempo.text = string.Format("{0:00}:{1:00}", minutos, segundos);
     }
-
+    public void MostrarVictoria()
+    {
+        Debug.Log("¡Sobreviviste 5 minutos! Victoria");
+        panelVictoria.SetActive(true);
+        Time.timeScale = 0f; // opcional: pausa el juego al ganar
+    }
 }
