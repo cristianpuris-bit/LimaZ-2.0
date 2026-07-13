@@ -4,7 +4,7 @@ using TMPro;
 public class Temporizador : MonoBehaviour
 {
     public TextMeshProUGUI textoTiempo;
-    public float TiempoLimite = 300f;
+    public float TiempoLimite = 90f;
     public float tiempoTranscurrido = 0f;
     public bool Aumentando = true;
     public GameObject panelVictoria;

@@ -28166,7 +28166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Temporizador
   textoTiempo: {fileID: 393045975}
-  TiempoLimite: 300
+  TiempoLimite: 90
   tiempoTranscurrido: 0
   Aumentando: 1
   panelVictoria: {fileID: 1874751230}
