@@ -57,6 +57,8 @@ public class ManolargaEnemy : MonoBehaviour
         Vector3 targetPos = target.transform.position;
         Vector3 myPos = transform.position;
 
+
+
         switch (state)
         {
             case EnemyState.None:

@@ -17,7 +17,9 @@ public class Zombie : MonoBehaviour
     public float radiusattack = 1f;
     public float radiusMovement = 5f;
     public float Health = 100f;
-  
+    public Animator anim;
+    public bool moving;
+
     public bool IsAbleToAttack = true;
     public float MaxTime = 2f;
     public float damage = 5f;
@@ -27,7 +29,9 @@ public class Zombie : MonoBehaviour
 
     void Start()
     {
+     
         target = GameObject.FindWithTag("Player");
+
     }
 
         void Update()
@@ -36,6 +40,25 @@ public class Zombie : MonoBehaviour
         Vector3 targetPos = target.transform.position;
         Vector3 myPos = transform.position;
         Vector3 direction = (targetPos - myPos).normalized;
+        float x = direction.x;
+        float y = direction.y;
+        if (direction.magnitude > 0.1f || direction.magnitude < -0.1f)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+        if (moving)
+        {
+            anim.SetFloat("X", x);
+            anim.SetFloat("Y", y);
+
+        }
+
+        anim.SetBool("Moving", moving);
+
         switch (State)
         {
             case EnemyState.None:

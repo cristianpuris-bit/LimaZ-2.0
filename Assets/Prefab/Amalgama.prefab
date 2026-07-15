@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6006738541119438286}
   - component: {fileID: 2030196039390529207}
   - component: {fileID: 3057581752471732969}
+  - component: {fileID: 15781019453302491}
   m_Layer: 3
   m_Name: Amalgama
   m_TagString: Enemy2
@@ -192,6 +193,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.953125, y: 1.1875}
   m_EdgeRadius: 0
+--- !u!95 &15781019453302491
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320248572584061846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b8b9fcd4a08b6740a1200f344efc32f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8230207754872189235
 GameObject:
   m_ObjectHideFlags: 0
